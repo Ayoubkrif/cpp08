@@ -9,11 +9,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include <iostream>
-//🟰🔧💥
+#include <vector>
+#include "Span.hpp"
+
 int	main(int argc, char *argv[])
 {
 	(void)argc, (void)argv;
-	std::cout << "Hello, World!" << std::endl;
-	return 0;
+	int arr[] = {11, 23, 45, 89};
+	int n = sizeof(arr) / sizeof(arr[0]);
+
+	// Initialize the std::vector v by arr
+	std::vector<int> v = {arr, arr + n};
+
+	Span	sp(50);
+	sp.addNumber(v.begin(), v.end());
+	return (0);
 }

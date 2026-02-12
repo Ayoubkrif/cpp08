@@ -23,6 +23,15 @@ class Span
 		Span	&operator=(const Span& other);
 
 		void			addNumber(int n);
+		template <typename T>
+		void			addNumber(typename T::iterator start, typename T::iterator end)
+		{
+			while (start != end)
+			{
+				addNumber(*start);
+				start++;
+			}
+		}
 		unsigned int	shortestSpan(void);
 		unsigned int	longestSpan(void);
 

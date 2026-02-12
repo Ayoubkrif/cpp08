@@ -11,6 +11,9 @@
 
 
 #include "Span.hpp"
+#include <cstdlib>
+#include <functional>
+#include <iterator>
 #include <stdexcept>
 
 Span::Span(void) : N(0)
@@ -51,10 +54,30 @@ unsigned int	Span::shortestSpan(void)
 {
 	if (_numbers.size() >= 1)
 		throw (std::runtime_error("Too few elements for shortestSpan()"));
+	std::multiset<int>::const_iterator first = _numbers.begin();
+	std::multiset<int>::const_iterator second = first++;
+	unsigned int	shortSpan = static_cast<unsigned int>(*first) - static_cast<unsigned int>(*second);
+	while (second != _numbers.end())
+	{
+		unsigned int	actualSpan = static_cast<unsigned int>(*first) - static_cast<unsigned int>(*second);
+		if (shortSpan > actualSpan)
+			shortSpan = actualSpan;
+		first = second;
+		second++;
+	}
+	return (shortSpan);
 }
 
 unsigned int	Span::longestSpan(void)
 {
 	if (_numbers.size() >= 1)
 		throw (std::runtime_error("Too few elements for longestSpan()"));
+	unsigned int	longSpan = static_cast<unsigned int>(*_numbers.begin()) - static_cast<unsigned int>(*_numbers.rbegin());
+	return (longSpan);
 }
+//
+// template <typename T>
+// void	Span::addNumber(typename T::iterator start, typename T::iterator end)
+// {
+//
+// }
