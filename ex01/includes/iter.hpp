@@ -1,44 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Span.hpp                                           :+:      :+:    :+:   */
+/*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/12 10:41:26 by aykrifa           #+#    #+#             */
+/*   Created: 2025/09/16 13:50:24 by aykrifa           #+#    #+#             */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #pragma once
 
-#include <vector>
+template <typename T>
 
-class Span
+void	iter(T *array, unsigned int size, void f(T const &))
 {
-	public:
-		Span(unsigned int n);
-		~Span(void);
-		Span(const Span& other);
-		Span	&operator=(const Span& other);
+	for (unsigned int i = 0; i < size; ++i)
+	{
+		f(array[i]);
+	}
+}
 
-		void			addNumber(int n);
-		template <typename T>
-		void			addNumber(T start, T end)
-		{
-			while (start != end)
-			{
-				addNumber(*start);
-				start++;
-			}
-		}
-		unsigned int	shortestSpan(void);
-		unsigned int	longestSpan(void);
+template <typename T>
 
-		const std::vector<int>	getNumbers(void) const;
+void	iter(T *array, unsigned int size, void f(T &))
+{
+	for (unsigned int i = 0; i < size; ++i)
+	{
+		f(array[i]);
+	}
+}
 
-	private:
-		Span(void);
-		const unsigned int	N;
-		std::vector<int>	_v;
-};
+template <typename Container, typename Func>
+void	iter(Container& container, Func f)
+{
+	for (typename Container::const_iterator it = container.begin(); it != container.end(); ++it)
+	{
+		f(*it);
+	}
+}

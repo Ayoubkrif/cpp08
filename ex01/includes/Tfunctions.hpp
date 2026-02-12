@@ -1,44 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Span.hpp                                           :+:      :+:    :+:   */
+/*   Tfunctions.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/12 10:41:26 by aykrifa           #+#    #+#             */
+/*   Created: 2025/09/16 14:22:42 by aykrifa           #+#    #+#             */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #pragma once
+#include <iostream>
 
-#include <vector>
+template <typename T>
 
-class Span
+void	print(T const &t)
 {
-	public:
-		Span(unsigned int n);
-		~Span(void);
-		Span(const Span& other);
-		Span	&operator=(const Span& other);
+	std::cout << t << std::endl;
+}
 
-		void			addNumber(int n);
-		template <typename T>
-		void			addNumber(T start, T end)
-		{
-			while (start != end)
-			{
-				addNumber(*start);
-				start++;
-			}
-		}
-		unsigned int	shortestSpan(void);
-		unsigned int	longestSpan(void);
+template <typename T>
 
-		const std::vector<int>	getNumbers(void) const;
+void	incr(T &t)
+{
+	++t;
+}
 
-	private:
-		Span(void);
-		const unsigned int	N;
-		std::vector<int>	_v;
-};
+template <typename T>
+
+bool	is_neg(T const &t)
+{
+	return (t < 0);
+}

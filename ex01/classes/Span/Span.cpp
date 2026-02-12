@@ -11,9 +11,8 @@
 
 
 #include "Span.hpp"
+#include <algorithm>
 #include <cstdlib>
-#include <functional>
-#include <iterator>
 #include <stdexcept>
 
 Span::Span(void) : N(0)
@@ -28,7 +27,7 @@ Span::~Span(void)
 {
 }
 
-Span::Span(const Span& other) : N(other.N), _numbers(other._numbers)
+Span::Span(const Span& other) : N(other.N), _v(other._v)
 {
 }
 
@@ -38,46 +37,42 @@ Span	&Span::operator=(const Span& rhs)
 	{
 		if (this->N < rhs.N)
 			throw (std::runtime_error("rhs too larg for ASSIGN"));
-		this->_numbers = rhs._numbers;
+		this->_v = rhs._v;
 	}
 	return (*this);
 }
 
 void	Span::addNumber(int n)
 {
-	if (_numbers.size() == this->N)
+	if (_v.size() == this->N)
 		throw (std::runtime_error("FULL cannot addNumber()"));
-	_numbers.insert(n);
+	_v.push_back(n);
 }
 
 unsigned int	Span::shortestSpan(void)
 {
-	if (_numbers.size() >= 1)
+	if (_v.size() <= 1)
 		throw (std::runtime_error("Too few elements for shortestSpan()"));
-	std::multiset<int>::const_iterator first = _numbers.begin();
-	std::multiset<int>::const_iterator second = first++;
-	unsigned int	shortSpan = static_cast<unsigned int>(*first) - static_cast<unsigned int>(*second);
-	while (second != _numbers.end())
-	{
-		unsigned int	actualSpan = static_cast<unsigned int>(*first) - static_cast<unsigned int>(*second);
-		if (shortSpan > actualSpan)
-			shortSpan = actualSpan;
-		first = second;
-		second++;
-	}
+    unsigned int shortSpan = (unsigned int)-1; // Max value for unsigned int
+    for (size_t i = 1; i < _v.size(); ++i)
+    {
+        unsigned int diff = (unsigned int)_v[i] - (unsigned int)_v[i - 1];
+        if (diff < shortSpan)
+            shortSpan = diff;
+    }
 	return (shortSpan);
 }
 
 unsigned int	Span::longestSpan(void)
 {
-	if (_numbers.size() >= 1)
+	if (_v.size() <= 1)
 		throw (std::runtime_error("Too few elements for longestSpan()"));
-	unsigned int	longSpan = static_cast<unsigned int>(*_numbers.begin()) - static_cast<unsigned int>(*_numbers.rbegin());
+	std::sort(_v.begin(), _v.end());
+	unsigned int	longSpan = (unsigned int)_v.back() - (unsigned int)_v.front();
 	return (longSpan);
 }
-//
-// template <typename T>
-// void	Span::addNumber(typename T::iterator start, typename T::iterator end)
-// {
-//
-// }
+
+const std::vector<int>	Span::getNumbers(void) const
+{
+	return (this->_v);
+}
