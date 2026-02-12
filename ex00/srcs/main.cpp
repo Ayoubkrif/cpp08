@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 11:21:00 by aykrifa           #+#    #+#             */
-/*   Updated: 2026/02/12 10:05:01 by aykrifa          ###   ########.fr       */
+/*   Updated: 2026/02/12 10:23:43 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,22 @@ int main ()
 		std::cout << ' ' << *it;
 	std::cout << std::endl;
 
-	try
-	{
 		std::vector<int>::iterator it;
 	
 		for (int i = -5; i < 10; i++)
 		{
-			it = easyfind(myvector, i);
-			(it == myvector.end()) ? (std::cout << i << " not found !")
-				: (std::cout << i << " caught :" << *it);
+			std::cout << i << " ";
+			try
+			{
+				it = easyfind(myvector, i);
+				std::cout << "caught";
+			}
+			catch (std::exception &e)
+			{
+				std::cerr << e.what() << std::endl;
+			}
 			std::cout << std::endl;
 		}
-	}
-	catch (std::exception &e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
 
 	tryWrongContainer();
 	return (0);
