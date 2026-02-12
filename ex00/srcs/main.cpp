@@ -6,11 +6,10 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 11:21:00 by aykrifa           #+#    #+#             */
-/*   Updated: 2026/02/12 10:23:43 by aykrifa          ###   ########.fr       */
+/*   Updated: 2026/02/12 10:38:14 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <exception>
 #include <iostream>
 #include <vector>
 #include "easyfind.hpp"

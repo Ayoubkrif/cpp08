@@ -6,12 +6,11 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 11:01:29 by aykrifa           #+#    #+#             */
-/*   Updated: 2026/02/12 10:17:50 by aykrifa          ###   ########.fr       */
+/*   Updated: 2026/02/12 10:37:47 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <iterator>
+#pragma once
 #include <algorithm>
 #include <stdexcept>
 
