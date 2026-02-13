@@ -1,8 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/13 10:54:26 by aykrifa           #+#    #+#             */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #include <iostream>
-//🟰🔧💥
-int	main(int argc, char *argv[])
+#include <stack>
+#include <vector>
+
+int	main(void)
 {
-	(void)argc, (void)argv;
-	std::cout << "Hello, World!" << std::endl;
-	return 0;
+	std::stack<std::vector<int> >	S;
+	S.c.begin();
+	return (0);
 }
