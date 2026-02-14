@@ -10,13 +10,32 @@
 /* ************************************************************************** */
 
 
+#include <cstdlib>
 #include <iostream>
-#include <stack>
-#include <vector>
+#include <list>
+#include <MutantStack.hpp>
 
 int	main(void)
 {
-	std::stack<std::vector<int> >	S;
-	S.c.begin();
+	std::list<int>					List;
+	MutantStack<int, std::list<int> >	Mutant;
+
+	for (int i = 0; i < 10; i++)
+	{
+		int num = std::rand() % 100;
+		List.push_back(num);
+		Mutant.push(num);
+	}
+
+	for (MutantStack<int, std::list<int> >::iterator it = Mutant.begin();
+		it != Mutant.end(); it++)
+	{
+		std::cout << *it << std::endl;
+	}
+	for (std::list<int>::iterator it = List.begin();
+		it != List.end(); it++)
+	{
+		std::cout << *it << std::endl;
+	}
 	return (0);
 }
